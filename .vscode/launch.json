@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ClientsApplication<clients>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "funk.tiago.clients.ClientsApplication",
+            "projectName": "clients",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
