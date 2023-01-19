@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import funk.tiago.clients.domain.Adress;
 import funk.tiago.clients.domain.Client;
 import funk.tiago.clients.service.ClientService;
 
@@ -34,6 +35,11 @@ public class ClientController {
     @GetMapping(path="/{id}")
     public ResponseEntity<Client> findById(@PathVariable int id){
         return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/adresses/{id}")
+    public ResponseEntity<List<Adress>> findAdressesById(@PathVariable int id){
+        return new ResponseEntity<>(clientService.findAdressesById(id), HttpStatus.OK);
     }
 
     @PostMapping

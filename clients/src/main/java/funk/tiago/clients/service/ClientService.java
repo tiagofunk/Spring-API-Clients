@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import funk.tiago.clients.domain.Adress;
 import funk.tiago.clients.domain.Client;
 import funk.tiago.clients.repository.ClientRepository;
 
@@ -27,6 +28,10 @@ public class ClientService {
 
     public Client findById(int id) {
         return clientRepository.findById(id);
+    }
+
+    public List<Adress> findAdressesById(int id) {
+        return clientRepository.findById(id).getAdresses();
     }
 
     public Client save(Client client) {
