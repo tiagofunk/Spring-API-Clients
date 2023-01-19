@@ -31,9 +31,9 @@ public class ClientController {
         return new ResponseEntity<>(clientService.listAll(), HttpStatus.OK);
     }
 
-    @GetMapping(path="/{name}")
-    public ResponseEntity<Client> findById(@PathVariable String name){
-        return new ResponseEntity<>(clientService.findByName(name), HttpStatus.OK);
+    @GetMapping(path="/{id}")
+    public ResponseEntity<Client> findById(@PathVariable int id){
+        return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
@@ -41,9 +41,9 @@ public class ClientController {
         return new ResponseEntity<>(clientService.save( client ), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path="/{name}")
-    public ResponseEntity<Void> delete(@PathVariable String name){
-        clientService.delete(name);
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id){
+        clientService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

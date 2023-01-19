@@ -1,48 +1,45 @@
 package funk.tiago.clients.service;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import funk.tiago.clients.domain.Client;
-import funk.tiago.clients.domain.Adress;
+import funk.tiago.clients.repository.ClientRepository;
 
 @Service
 public class ClientService {
 
-    private static List<Client> clients;
-    static {
-        clients = new ArrayList<>(List.of(
-            new Client("Tiago", new Date("03/03/1996"),
-                    new Adress("Rua a", "89222888", "1000", "Joinville")),
-            new Client("Viviane", new Date("03/03/1996"),
-                    new Adress("Rua a", "89222888", "1000", "Joinville"))));
+    private final ClientRepository clientRepository;
+
+    public ClientService(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
     }
 
     public List<Client> listAll() {
-        return clients;
+        Iterator<Client> myIterator = (Iterator<Client>) clientRepository.findAll().iterator();
+        List<Client> list = new ArrayList<>();
+        myIterator.forEachRemaining(list::add);
+        return list;
     }
 
-    public Client findByName(String name) {
-        return clients.stream().filter(c -> c.getName().equals(name)).findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found!"));
+    public Client findById(int id) {
+        return clientRepository.findById(id);
     }
 
     public Client save(Client client) {
-        clients.add(client);
-        return client;
+        return clientRepository.save(client);
     }
 
-    public void delete(String name) {
-        clients.remove(findByName(name));
+    public void delete(int id) {
+        clientRepository.delete(findById(id));
     }
 
     public void replace(Client client) {
-        delete(client.getName());
-        clients.add(client);
+        if( clientRepository.existsById(client.getId()) ){
+            clientRepository.save(client);
+        }
     }
 }

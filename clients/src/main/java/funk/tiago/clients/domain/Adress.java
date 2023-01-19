@@ -1,6 +1,15 @@
 package funk.tiago.clients.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Adress {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    public int id;
     public String street;
     public String cep;
     public String number;

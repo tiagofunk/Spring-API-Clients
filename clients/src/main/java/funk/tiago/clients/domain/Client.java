@@ -2,14 +2,22 @@ package funk.tiago.clients.domain;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+@Entity
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
     private String name;
     private Date birthdate;
-    private Adress adress;
-    public Client(String name, Date birthdate, Adress adress) {
+    
+    public Client() {}
+    public Client(String name, Date birthdate) {
         this.name = name;
         this.birthdate = birthdate;
-        this.adress = adress;
     }
     public String getName() {
         return name;
@@ -23,12 +31,8 @@ public class Client {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-    public Adress getAdress() {
-        return adress;
+    public int getId() {
+        return id;
     }
-    public void setAdress(Adress adress) {
-        this.adress = adress;
-    }
-
     
 }
