@@ -17,16 +17,22 @@ public class Client {
     private int id;
     private String name;
     private Date birthdate;
+    private int mainAdress;
     @OneToMany(cascade=CascadeType.ALL)
     private List<Adress> adresses;
 
     public Client() {
     }
 
-    public Client(String name, Date birthdate, List<Adress> adresses) {
+    public Client(String name, Date birthdate, int mainAdress, List<Adress> adresses) {
         this.name = name;
         this.birthdate = birthdate;
+        this.mainAdress = mainAdress;
         this.adresses = adresses;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -45,8 +51,12 @@ public class Client {
         this.birthdate = birthdate;
     }
 
-    public int getId() {
-        return id;
+    public int getMainAdress() {
+        return mainAdress;
+    }
+
+    public void setMainAdress(int mainAdress) {
+        this.mainAdress = mainAdress;
     }
 
     public List<Adress> getAdresses() {

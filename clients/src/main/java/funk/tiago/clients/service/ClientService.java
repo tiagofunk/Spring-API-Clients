@@ -53,4 +53,10 @@ public class ClientService {
         c.getAdresses().add(adress);
         clientRepository.save(c);
     }
+
+    public void createMainAdress(int idClient, int idAdress) {
+        Client c = findById(idClient);
+        c.setMainAdress(idAdress);
+        clientRepository.save(c);
+    }
 }

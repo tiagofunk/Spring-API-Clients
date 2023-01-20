@@ -64,4 +64,10 @@ public class ClientController {
         clientService.addAdress( idClient, adress );
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping(path = "createMainAdress/{idClient}-{idAdress}")
+    public ResponseEntity<Void> createMainAdress(@PathVariable int idClient, @PathVariable int idAdress){
+        clientService.createMainAdress( idClient, idAdress );
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
