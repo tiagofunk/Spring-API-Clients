@@ -58,4 +58,10 @@ public class ClientController {
         clientService.replace(client);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping(path = "adresses/{idClient}")
+    public ResponseEntity<Void> addAdress(@PathVariable int idClient, @RequestBody Adress adress){
+        clientService.addAdress( idClient, adress );
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
